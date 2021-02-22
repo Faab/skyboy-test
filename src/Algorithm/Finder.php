@@ -12,15 +12,17 @@ final class Finder
         $this->people = $people;
     }
 
-    public function find(string $type): Comparator {
+    public function find(string $type): Comparator
+    {
         $comparator = new Comparator();
 
         if (count($this->people) < 2) {
             return $comparator;
         }
 
+        // Order people by birthday asc
         uasort($this->people, static function(Person $a, Person $b) {
-            return $a->birthDate->getTimestamp() > $b->birthDate->getTimestamp();
+            return $a->getBirthDate()->getTimestamp() > $b->getBirthDate()->getTimestamp();
         });
 
         $comparator->firstPerson = current($this->people);
@@ -31,7 +33,7 @@ final class Finder
                 $comparator->delta = self::calculateDelta($comparator->firstPerson, $comparator->secondPerson);
                 break;
 
-            case FinderType::CLOSTEST:
+            case FinderType::CLOSEST:
                 $comparator->secondPerson = next($this->people);
                 $comparator->delta = self::calculateDelta($comparator->firstPerson, $comparator->secondPerson);
 
@@ -53,6 +55,6 @@ final class Finder
 
     private static function calculateDelta(Person $firstPerson, Person $secondPerson): int
     {
-        return $secondPerson->birthDate->getTimestamp() - $firstPerson->birthDate->getTimestamp();
+        return $secondPerson->getBirthDate()->getTimestamp() - $firstPerson->getBirthDate()->getTimestamp();
     }
 }

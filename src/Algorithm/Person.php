@@ -7,10 +7,10 @@ use DateTime;
 final class Person
 {
     /** @var string */
-    public $name;
+    private $name;
 
     /** @var DateTime */
-    public $birthDate;
+    private $birthDate;
 
     public function getName(): string
     {

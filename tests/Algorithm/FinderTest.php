@@ -23,21 +23,21 @@ final class FinderTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->sue            = new Person();
-        $this->sue->name      = "Sue";
-        $this->sue->birthDate = new \DateTime("1950-01-01");
+        $this->sue = new Person();
+        $this->sue->setName("Sue");
+        $this->sue->setBirthDate(new \DateTime("1950-01-01"));
 
-        $this->greg            = new Person();
-        $this->greg->name      = "Greg";
-        $this->greg->birthDate = new \DateTime("1952-05-01");
+        $this->greg = new Person();
+        $this->greg->setName("Greg");
+        $this->greg->setBirthDate(new \DateTime("1952-05-01"));
 
-        $this->sarah            = new Person();
-        $this->sarah->name      = "Sarah";
-        $this->sarah->birthDate = new \DateTime("1982-01-01");
+        $this->sarah = new Person();
+        $this->sarah->setName("Sarah");
+        $this->sarah->setBirthDate(new \DateTime("1982-01-01"));
 
-        $this->mike            = new Person();
-        $this->mike->name      = "Mike";
-        $this->mike->birthDate = new \DateTime("1979-01-01");
+        $this->mike = new Person();
+        $this->mike->setName("Mike");
+        $this->mike->setBirthDate(new \DateTime("1979-01-01"));
     }
 
     /** @test */
@@ -46,7 +46,7 @@ final class FinderTest extends TestCase
         $list   = [];
         $finder = new Finder($list);
 
-        $result = $finder->find(FinderType::CLOSTEST);
+        $result = $finder->find(FinderType::CLOSEST);
 
         self::assertEquals(null, $result->firstPerson);
         self::assertEquals(null, $result->secondPerson);
@@ -59,7 +59,7 @@ final class FinderTest extends TestCase
         $list[] = $this->sue;
         $finder = new Finder($list);
 
-        $result = $finder->find(FinderType::CLOSTEST);
+        $result = $finder->find(FinderType::CLOSEST);
 
         self::assertEquals(null, $result->firstPerson);
         self::assertEquals(null, $result->secondPerson);
@@ -73,7 +73,7 @@ final class FinderTest extends TestCase
         $list[] = $this->greg;
         $finder = new Finder($list);
 
-        $result = $finder->find(FinderType::CLOSTEST);
+        $result = $finder->find(FinderType::CLOSEST);
 
         self::assertEquals($this->sue, $result->firstPerson);
         self::assertEquals($this->greg, $result->secondPerson);
@@ -121,7 +121,7 @@ final class FinderTest extends TestCase
         $list[] = $this->greg;
         $finder = new Finder($list);
 
-        $result = $finder->find(FinderType::CLOSTEST);
+        $result = $finder->find(FinderType::CLOSEST);
 
         self::assertEquals($this->sue, $result->firstPerson);
         self::assertEquals($this->greg, $result->secondPerson);

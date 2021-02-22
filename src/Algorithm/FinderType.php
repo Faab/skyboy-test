@@ -4,6 +4,6 @@ namespace Eurecab\Finder\Algorithm;
 
 interface FinderType
 {
-    const CLOSTEST = 'closest';
-    const FURTHEST = 'furthest';
+    public const CLOSEST  = 'closest';
+    public const FURTHEST = 'furthest';
 }
